@@ -1,0 +1,163 @@
+# -------------------------------
+# TASK 1: Remove Code Duplication
+# -------------------------------
+def calculate_rectangle_metrics(length, width):
+    """
+    Calculate area and perimeter of a rectangle.
+    """
+    area = length * width
+    perimeter = 2 * (length + width)
+    return area, perimeter
+
+
+print("---- Task 1 Output ----")
+for l, w in [(5, 10), (7, 12), (10, 15)]:
+    area, perimeter = calculate_rectangle_metrics(l, w)
+    print(f"Area of Rectangle: {area}")
+    print(f"Perimeter of Rectangle: {perimeter}")
+
+
+# -------------------------------------------
+# TASK 2: Optimize Loops & Compare Performance
+# -------------------------------------------
+import time
+
+names = ["Alice", "Bob", "Charlie", "David"]
+search_names = ["Charlie", "Eve", "Bob"]
+
+print("\n---- Task 2 Output ----")
+
+# Before Optimization
+start = time.time()
+for s in search_names:
+    found = False
+    for n in names:
+        if s == n:
+            found = True
+    if found:
+        print(f"{s} is in the list")
+    else:
+        print(f"{s} is not in the list")
+end = time.time()
+print("Time (Before):", end - start)
+
+
+# After Optimization
+start = time.time()
+name_set = set(names)
+
+for s in search_names:
+    if s in name_set:
+        print(f"{s} is in the list")
+    else:
+        print(f"{s} is not in the list")
+end = time.time()
+print("Time (After):", end - start)
+
+
+# -------------------------------------------
+# TASK 3: Extract Reusable Function
+# -------------------------------------------
+def calculate_total(price):
+    """
+    Calculate total price including 18% tax.
+    """
+    tax = price * 0.18
+    return price + tax
+
+
+print("\n---- Task 3 Output ----")
+print("Total Price:", calculate_total(250))
+print("Total Price:", calculate_total(500))
+
+
+# -------------------------------------------
+# TASK 4: Replace Magic Numbers with Constants
+# -------------------------------------------
+PI = 3.14159
+RADIUS = 7
+
+print("\n---- Task 4 Output ----")
+area = PI * (RADIUS ** 2)
+circumference = 2 * PI * RADIUS
+
+print("Area of Circle:", area)
+print("Circumference of Circle:", circumference)
+
+
+# -------------------------------------------
+# TASK 5: Improve Variable Naming
+# -------------------------------------------
+print("\n---- Task 5 Output ----")
+
+# Base and height of triangle
+base = 10
+height = 20
+
+# Formula: (base * height) / 2
+area_of_triangle = (base * height) / 2
+
+print("Area of Triangle:", area_of_triangle)
+
+
+# -------------------------------------------
+# TASK 6: Reusable Grading Function
+# -------------------------------------------
+def calculate_grade(marks):
+    """
+    Return grade based on marks.
+    """
+    if marks >= 90:
+        return "Grade A"
+    elif marks >= 75:
+        return "Grade B"
+    else:
+        return "Grade C"
+
+
+print("\n---- Task 6 Output ----")
+print(calculate_grade(85))
+print(calculate_grade(72))
+
+
+# -------------------------------------------
+# TASK 7: Convert Procedural Code to Functions
+# -------------------------------------------
+def get_input():
+    """
+    Provide input value (fixed for testing).
+    """
+    return 5  # fixed input to avoid manual entry
+
+
+def calculate_square(num):
+    """
+    Calculate square of a number.
+    """
+    return num * num
+
+
+def display_result(result):
+    """
+    Display the result.
+    """
+    print("Square:", result)
+
+
+print("\n---- Task 7 Output ----")
+num = get_input()
+result = calculate_square(num)
+display_result(result)
+
+
+# -------------------------------------------
+# TASK 8: Optimize List Processing
+# -------------------------------------------
+print("\n---- Task 8 Output ----")
+
+nums = [1, 2, 3, 4, 5]
+
+# Using list comprehension
+squares = [n * n for n in nums]
+
+print("Squares:", squares)
