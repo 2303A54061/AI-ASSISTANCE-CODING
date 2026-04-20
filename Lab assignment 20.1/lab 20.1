@@ -1,0 +1,179 @@
+
+# print("====================================")
+# print("TASK 1: INPUT VALIDATION (LOGIN)")
+# print("====================================")
+
+# ❌ Insecure Version
+print("\n[Insecure Login]")
+username = "admin"   # simulate input
+password = "1234"
+
+if username == "admin" and password == "1234":
+    print("Login successful")
+else:
+    print("Invalid credentials")
+
+
+# ✅ Secure Version
+import re
+
+print("\n[Secure Login]")
+
+VALID_USERNAME = "admin"
+VALID_PASSWORD = "1234"
+
+def is_valid_input(text):
+    """
+    Allow only alphanumeric input (3–20 characters).
+    """
+    return bool(re.fullmatch(r"[A-Za-z0-9]{3,20}", text))
+
+username = "admin123"
+password = "1234"
+
+if not is_valid_input(username) or not is_valid_input(password):
+    print("Invalid input format")
+elif username == VALID_USERNAME and password == VALID_PASSWORD:
+    print("Login successful")
+else:
+    print("Invalid credentials")
+
+
+# ====================================
+# TASK 2: SQL INJECTION
+# ====================================
+print("\n====================================")
+print("TASK 2: SQL INJECTION")
+print("====================================")
+
+
+import sqlite3
+
+conn = sqlite3.connect(":memory:")
+cursor = conn.cursor()
+
+# Create sample table
+cursor.execute("CREATE TABLE users (id INTEGER, username TEXT)")
+cursor.execute("INSERT INTO users VALUES (1, 'admin')")
+cursor.execute("INSERT INTO users VALUES (2, 'user')")
+
+# ❌ Insecure Query
+print("\n[Insecure Query]")
+user_input = "admin' OR '1'='1"
+
+query = f"SELECT * FROM users WHERE username = '{user_input}'"
+try:
+    cursor.execute(query)
+    print(cursor.fetchall())
+except Exception as e:
+    print("Error:", e)
+
+# ✅ Secure Query
+print("\n[Secure Query]")
+
+user_input = "admin"
+
+query = "SELECT * FROM users WHERE username = ?"
+cursor.execute(query, (user_input,))
+print(cursor.fetchall())
+
+
+# ====================================
+# TASK 3: XSS (SIMULATED)
+# ====================================
+print("\n====================================")
+print("TASK 3: XSS CHECK (SIMULATION)")
+print("====================================")
+
+# ❌ Insecure
+user_input = "<script>alert('Hacked')</script>"
+print("\n[Insecure Output]")
+print("Displaying:", user_input)  # would be dangerous in HTML
+
+# ✅ Secure
+import html
+
+print("\n[Secure Output]")
+safe_output = html.escape(user_input)
+print("Escaped:", safe_output)
+
+
+# ====================================
+# TASK 4: SECURITY AUDIT (FILE ACCESS)
+# ====================================
+print("\n====================================")
+print("TASK 4: FILE ACCESS SECURITY")
+print("====================================")
+
+# ❌ Insecure
+print("\n[Insecure File Access]")
+file_name = "data.txt"  # simulated
+
+try:
+    f = open(file_name, "w")
+    f.write("Sample Data")
+    f.close()
+
+    f = open(file_name, "r")
+    print(f.read())
+    f.close()
+except:
+    print("File error")
+
+
+# ✅ Secure
+print("\n[Secure File Access]")
+
+import os
+
+ALLOWED_FILES = ["data.txt"]
+
+file_name = "data.txt"
+
+if file_name not in ALLOWED_FILES:
+    print("Access denied")
+else:
+    with open(file_name, "r") as f:
+        print(f.read())
+
+
+# ====================================
+# TASK 5: PICKLE VS JSON
+# ====================================
+print("\n====================================")
+print("TASK 5: DATA SERIALIZATION")
+print("====================================")
+
+# ❌ Insecure (Pickle)
+print("\n[Insecure Pickle]")
+
+import pickle
+
+data = {"user": "admin"}
+
+with open("data.pkl", "wb") as f:
+    pickle.dump(data, f)
+
+with open("data.pkl", "rb") as f:
+    loaded = pickle.load(f)
+
+print("Loaded (Pickle):", loaded)
+
+
+# ✅ Secure (JSON)
+print("\n[Secure JSON]")
+
+import json
+
+with open("data.json", "w") as f:
+    json.dump(data, f)
+
+with open("data.json", "r") as f:
+    loaded = json.load(f)
+
+print("Loaded (JSON):", loaded)
+
+
+print("\n====================================")
+print("ALL TASKS COMPLETED SUCCESSFULLY")
+print("====================================")
