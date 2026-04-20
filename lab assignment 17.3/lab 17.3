@@ -1,0 +1,137 @@
+import pandas as pd
+import numpy as np
+import random
+
+np.random.seed(42)
+
+# ---------------------------------------
+# 1. Employee Dataset
+# ---------------------------------------
+employee_data = pd.DataFrame({
+    "employee_id": np.random.randint(1000, 1020, 30),  # duplicates intentionally
+    "salary": np.random.choice([30000, 40000, 50000, None], 30),
+    "designation": np.random.choice(["Manager", "Engineer", "Analyst", None], 30),
+    "experience": np.random.choice([1, 2, 3, 5, 10, None], 30),
+    "employment_type": np.random.choice(["Full-Time", "Part-Time", "Contract"], 30)
+})
+
+employee_data.to_csv("employee_data.csv", index=False)
+
+
+# ---------------------------------------
+# 2. Student Performance Dataset
+# ---------------------------------------
+dates = pd.date_range(start="2023-01-01", periods=30)
+
+student_data = pd.DataFrame({
+    "student_id": range(1, 31),
+    "exam_date": np.random.choice(dates, 30),
+    "total_marks": np.random.randint(30, 100, 30)
+})
+
+# Add outliers
+student_data.loc[0, "total_marks"] = 200
+student_data.loc[1, "total_marks"] = -20
+
+student_data.to_csv("student_performance.csv", index=False)
+
+
+# ---------------------------------------
+# 3. Student Health Dataset
+# ---------------------------------------
+health_data = pd.DataFrame({
+    "student_id": range(1, 31),
+    "height": np.random.choice([150, 160, 170, 180, None], 30),
+    "weight": np.random.choice([50, 60, 70, 80, None], 30),
+    "BMI": np.random.choice([18.5, 22.0, 25.0, None], 30),
+    "medical_condition": np.random.choice(["None", "Diabetes", "BP"], 30),
+    "fitness_status": np.random.choice(["Fit", "Unfit"], 30)
+})
+
+health_data.to_csv("student_health.csv", index=False)
+
+
+# ---------------------------------------
+# 4. Ride-Sharing Dataset
+# ---------------------------------------
+rides_data = pd.DataFrame({
+    "ride_id": np.random.randint(2000, 2020, 30),  # duplicates
+    "pickup_location": np.random.choice(["City Center ", "Airport", " Mall", "Station"], 30),
+    "drop_location": np.random.choice(["Hotel", "Office ", "Home", " Mall"], 30),
+    "fare_amount": np.random.choice([100, 200, 300, None], 30),
+    "driver_rating": np.random.uniform(2.5, 5.0, 30)
+})
+
+rides_data.to_csv("rides_data.csv", index=False)
+
+
+print("✅ All datasets generated successfully!")
+
+import pandas as pd
+import numpy as np
+import random
+
+np.random.seed(42)
+
+# ---------------------------------------
+# 1. Employee Dataset
+# ---------------------------------------
+employee_data = pd.DataFrame({
+    "employee_id": np.random.randint(1000, 1020, 30),  # duplicates intentionally
+    "salary": np.random.choice([30000, 40000, 50000, None], 30),
+    "designation": np.random.choice(["Manager", "Engineer", "Analyst", None], 30),
+    "experience": np.random.choice([1, 2, 3, 5, 10, None], 30),
+    "employment_type": np.random.choice(["Full-Time", "Part-Time", "Contract"], 30)
+})
+
+employee_data.to_csv("employee_data.csv", index=False)
+
+
+# ---------------------------------------
+# 2. Student Performance Dataset
+# ---------------------------------------
+dates = pd.date_range(start="2023-01-01", periods=30)
+
+student_data = pd.DataFrame({
+    "student_id": range(1, 31),
+    "exam_date": np.random.choice(dates, 30),
+    "total_marks": np.random.randint(30, 100, 30)
+})
+
+# Add outliers
+student_data.loc[0, "total_marks"] = 200
+student_data.loc[1, "total_marks"] = -20
+
+student_data.to_csv("student_performance.csv", index=False)
+
+
+# ---------------------------------------
+# 3. Student Health Dataset
+# ---------------------------------------
+health_data = pd.DataFrame({
+    "student_id": range(1, 31),
+    "height": np.random.choice([150, 160, 170, 180, None], 30),
+    "weight": np.random.choice([50, 60, 70, 80, None], 30),
+    "BMI": np.random.choice([18.5, 22.0, 25.0, None], 30),
+    "medical_condition": np.random.choice(["None", "Diabetes", "BP"], 30),
+    "fitness_status": np.random.choice(["Fit", "Unfit"], 30)
+})
+
+health_data.to_csv("student_health.csv", index=False)
+
+
+# ---------------------------------------
+# 4. Ride-Sharing Dataset
+# ---------------------------------------
+rides_data = pd.DataFrame({
+    "ride_id": np.random.randint(2000, 2020, 30),  # duplicates
+    "pickup_location": np.random.choice(["City Center ", "Airport", " Mall", "Station"], 30),
+    "drop_location": np.random.choice(["Hotel", "Office ", "Home", " Mall"], 30),
+    "fare_amount": np.random.choice([100, 200, 300, None], 30),
+    "driver_rating": np.random.uniform(2.5, 5.0, 30)
+})
+
+rides_data.to_csv("rides_data.csv", index=False)
+
+
+print("✅ All datasets generated successfully!")
